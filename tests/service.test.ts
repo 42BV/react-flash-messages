@@ -17,12 +17,12 @@ describe('AuthenticationService', () => {
     const subscriber = jest.fn();
 
     flashMessageService.subscribe(subscriber);
-    expect(subscriber).toBeCalledTimes(1);
+    expect(subscriber).toHaveBeenCalledTimes(1);
 
     flashMessageService.addFlashMessage(flashMessage);
 
-    expect(subscriber).toBeCalledTimes(2);
-    expect(subscriber).toBeCalledWith([flashMessage]);
+    expect(subscriber).toHaveBeenCalledTimes(2);
+    expect(subscriber).toHaveBeenCalledWith([flashMessage]);
 
     expect(flashMessageService.getFlashMessages()).toEqual([flashMessage]);
   });
@@ -33,14 +33,14 @@ describe('AuthenticationService', () => {
     const subscriber = jest.fn();
 
     flashMessageService.subscribe(subscriber);
-    expect(subscriber).toBeCalledTimes(1);
+    expect(subscriber).toHaveBeenCalledTimes(1);
 
     flashMessageService.addFlashMessage(flashMessage);
-    expect(subscriber).toBeCalledTimes(2);
+    expect(subscriber).toHaveBeenCalledTimes(2);
 
     flashMessageService.removeFlashMessage(flashMessage, 'duration-elapsed');
 
-    expect(subscriber).toBeCalledTimes(3);
+    expect(subscriber).toHaveBeenCalledTimes(3);
     expect(subscriber).toHaveBeenLastCalledWith([]);
 
     expect(flashMessageService.getFlashMessages()).toEqual([]);
@@ -53,17 +53,17 @@ describe('AuthenticationService', () => {
     const subscriber = jest.fn();
 
     flashMessageService.subscribe(subscriber);
-    expect(subscriber).toBeCalledTimes(1);
+    expect(subscriber).toHaveBeenCalledTimes(1);
 
     flashMessageService.addFlashMessage(flashMessageOne);
-    expect(subscriber).toBeCalledTimes(2);
+    expect(subscriber).toHaveBeenCalledTimes(2);
 
     flashMessageService.addFlashMessage(flashMessageTwo);
-    expect(subscriber).toBeCalledTimes(3);
+    expect(subscriber).toHaveBeenCalledTimes(3);
 
     flashMessageService.clearFlashMessages();
 
-    expect(subscriber).toBeCalledTimes(4);
+    expect(subscriber).toHaveBeenCalledTimes(4);
     expect(subscriber).toHaveBeenLastCalledWith([]);
 
     expect(flashMessageService.getFlashMessages()).toEqual([]);
@@ -75,11 +75,11 @@ describe('AuthenticationService', () => {
     flashMessageService.subscribe(subscriber);
 
     // It should immediately receive the state after subscribing.
-    expect(subscriber).toBeCalledTimes(1);
+    expect(subscriber).toHaveBeenCalledTimes(1);
 
     // Call clearFlashMessages which should inform the subscriber.
     flashMessageService.clearFlashMessages();
-    expect(subscriber).toBeCalledTimes(2);
+    expect(subscriber).toHaveBeenCalledTimes(2);
 
     // Unsubscribe the subscriber, and call clearFlashMessages.
     flashMessageService.unsubscribe(subscriber);
@@ -87,6 +87,6 @@ describe('AuthenticationService', () => {
     flashMessageService.clearFlashMessages();
 
     // It should not have been informed anymore.
-    expect(subscriber).toBeCalledTimes(2);
+    expect(subscriber).toHaveBeenCalledTimes(2);
   });
 });

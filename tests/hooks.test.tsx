@@ -36,6 +36,6 @@ describe('useFlashMessages', () => {
 
     cleanup();
 
-    expect(flashMessageService.unsubscribe).toBeCalledTimes(1);
+    expect(flashMessageService.unsubscribe).toHaveBeenCalledTimes(1);
   });
 });

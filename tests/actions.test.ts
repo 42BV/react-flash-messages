@@ -36,14 +36,14 @@ describe('Flash message actions', () => {
       
     flashMessage.onClick();
 
-    expect(onClick).toBeCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith(flashMessage);
 
     expect(typeof flashMessage.onRemove).toBe('function');
 
     flashMessage.onRemove('duration-elapsed');
 
-    expect(onRemove).toBeCalledTimes(expectedRemoveCount);
+    expect(onRemove).toHaveBeenCalledTimes(expectedRemoveCount);
     expect(onRemove).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
   }
 

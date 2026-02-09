@@ -60,6 +60,7 @@ src/
 
 - **100% test coverage** required (branches, functions, lines, statements)
 - **Zero lint warnings** allowed (`--max-warnings=0`)
+- **ESLint v9 flat config** in `eslint.config.mjs` (ESM file since project is CommonJS)
 - **Prettier**: single quotes, no trailing commas
 - **TypeScript strict mode** enabled
 - **Pre-commit hook** (husky + lint-staged) auto-formats staged files

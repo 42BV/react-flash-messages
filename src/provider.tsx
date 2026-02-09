@@ -18,7 +18,7 @@ export type Props = {
  *
  * @param children The children to render
  */
-export function FlashMessagesProvider({ children }: Props): JSX.Element {
+export function FlashMessagesProvider({ children }: Props): React.ReactElement {
   const flashMessages = useFlashMessages();
 
   return (

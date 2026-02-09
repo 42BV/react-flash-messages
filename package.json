@@ -20,11 +20,14 @@
     "url": "https://github.com/42BV/flash-messages/issues"
   },
   "homepage": "https://github.com/42BV/flash-messages#readme",
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.0.0",
-    "@testing-library/react": "14.0.0",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@testing-library/react": "^16.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@vitest/coverage-v8": "^3.0.0",
     "eslint": "^9.0.0",
     "eslint-plugin-react": "^7.37.0",
@@ -35,8 +38,8 @@
     "lint-staged": "13.1.2",
     "np": "^7.6.3",
     "prettier": "2.8.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.0.0",
     "vitest": "^3.0.0"

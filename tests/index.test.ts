@@ -11,19 +11,14 @@ describe('index', () => {
         "FlashMessagesContext": {
           "$$typeof": Symbol(react.context),
           "Consumer": {
-            "$$typeof": Symbol(react.context),
+            "$$typeof": Symbol(react.consumer),
             "_context": [Circular],
           },
-          "Provider": {
-            "$$typeof": Symbol(react.provider),
-            "_context": [Circular],
-          },
+          "Provider": [Circular],
           "_currentRenderer": null,
           "_currentRenderer2": null,
           "_currentValue": [],
           "_currentValue2": [],
-          "_defaultValue": null,
-          "_globalName": null,
           "_threadCount": 0,
         },
         "FlashMessagesProvider": [Function],

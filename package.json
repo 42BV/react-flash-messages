@@ -28,21 +28,21 @@
     "@testing-library/react": "16.3.2",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
-    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/coverage-v8": "4.0.18",
     "eslint": "9.39.2",
     "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-vitest": "0.5.4",
-    "jsdom": "25.0.1",
-    "husky": "8.0.3",
-    "lint-staged": "13.1.2",
-    "np": "7.6.3",
-    "prettier": "2.8.4",
+    "jsdom": "28.0.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
+    "np": "11.0.2",
+    "prettier": "3.8.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "typescript": "5.9.3",
     "typescript-eslint": "8.54.0",
-    "vitest": "3.2.4"
+    "vitest": "4.0.18"
   },
   "scripts": {
     "start": "vitest --coverage",
@@ -58,7 +58,7 @@
     "release": "npm run tsc && np",
     "dev:publish": "./scripts/dev-publish.sh",
     "version": "npm run tsc && jekyll build",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "{src,test}/**/*.{js,jsx,json,scss,tsx,ts}": [

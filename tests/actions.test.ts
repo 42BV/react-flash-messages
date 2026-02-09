@@ -6,7 +6,7 @@ import {
   addApocalypse,
   addFlashMessage,
   removeFlashMessage,
-  resetNextFlashMessageId,
+  resetNextFlashMessageId
 } from '../src/actions';
 import { FlashMessage } from '../src/models';
 
@@ -31,7 +31,13 @@ describe('Flash message actions', () => {
     resetNextFlashMessageId();
   });
 
-  function checkCallbacks({flashMessage, expectedRemoveCount}: { flashMessage: FlashMessage<unknown>, expectedRemoveCount: number}) {
+  function checkCallbacks({
+    flashMessage,
+    expectedRemoveCount
+  }: {
+    flashMessage: FlashMessage<unknown>;
+    expectedRemoveCount: number;
+  }) {
     expect(typeof flashMessage.onClick).toBe('function');
 
     flashMessage.onClick();
@@ -55,12 +61,12 @@ describe('Flash message actions', () => {
         onClick,
         onRemove,
         duration: 5000,
-        data: { age: 16 },
+        data: { age: 16 }
       });
 
       expect(flashMessage.id).toBe(1);
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 1});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 1 });
     });
 
     test('when onClick, and onRemove are not defined it should assign a noop', () => {
@@ -68,7 +74,7 @@ describe('Flash message actions', () => {
         type: 'BLAAT',
         text: 'TLAAB',
         duration: 5000,
-        data: { age: 16 },
+        data: { age: 16 }
       });
 
       expect(typeof flashMessage.onClick).toBe('function');
@@ -85,119 +91,168 @@ describe('Flash message actions', () => {
         duration: false,
         onClick,
         onRemove,
-        data: { age: 16 },
+        data: { age: 16 }
       });
 
       expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-        id: 1,
-        type: 'BLAAT',
-        text: 'TLAAB',
-        duration: false,
-        data: { age: 16 },
-      }));
+      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          type: 'BLAAT',
+          text: 'TLAAB',
+          duration: false,
+          data: { age: 16 }
+        })
+      );
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 1});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 1 });
     });
   });
 
   test('removeFlashMessage', () => {
-    const flashMessage = addError({ text: 'Epic error', onClick, onRemove, data: { age: 12 } });
+    const flashMessage = addError({
+      text: 'Epic error',
+      onClick,
+      onRemove,
+      data: { age: 12 }
+    });
 
     expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-    expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-      id: 1,
-      type: 'ERROR',
-      text: 'Epic error',
-      duration: 10000,
-      data: { age: 12 },
-    }));
+    expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: 1,
+        type: 'ERROR',
+        text: 'Epic error',
+        duration: 10000,
+        data: { age: 12 }
+      })
+    );
 
     // Calling removeFlashMessage is a manual removal.
     removeFlashMessage(flashMessage);
 
     expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
-    expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'manually-removed');
+    expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(
+      flashMessage,
+      'manually-removed'
+    );
   });
 
   describe('default creators', () => {
     test('addError', () => {
-      const flashMessage = addError({ text: 'Epic error', onClick, onRemove, data: { age: 12 } });
+      const flashMessage = addError({
+        text: 'Epic error',
+        onClick,
+        onRemove,
+        data: { age: 12 }
+      });
 
       expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-        id: 1,
-        type: 'ERROR',
-        text: 'Epic error',
-        duration: 10000,
-        data: { age: 12 },
-      }));
+      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          type: 'ERROR',
+          text: 'Epic error',
+          duration: 10000,
+          data: { age: 12 }
+        })
+      );
 
       vi.advanceTimersByTime(9999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
       vi.advanceTimersByTime(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
+      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(
+        flashMessage,
+        'duration-elapsed'
+      );
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 2});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 2 });
     });
 
     test('addWarning', () => {
-      const flashMessage = addWarning({ text: 'Epic warning', onClick, onRemove, data: { age: 13 } });
+      const flashMessage = addWarning({
+        text: 'Epic warning',
+        onClick,
+        onRemove,
+        data: { age: 13 }
+      });
 
       expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-        id: 1,
-        type: 'WARNING',
-        text: 'Epic warning',
-        duration: 7000,
-        data: { age: 13 },
-      }));
+      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          type: 'WARNING',
+          text: 'Epic warning',
+          duration: 7000,
+          data: { age: 13 }
+        })
+      );
 
       vi.advanceTimersByTime(6999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
       vi.advanceTimersByTime(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
+      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(
+        flashMessage,
+        'duration-elapsed'
+      );
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 2});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 2 });
     });
 
     test('addSuccess', () => {
-      const flashMessage = addSuccess({ text: 'Epic success', onClick, onRemove, data: { age: 14 } });
+      const flashMessage = addSuccess({
+        text: 'Epic success',
+        onClick,
+        onRemove,
+        data: { age: 14 }
+      });
 
       expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-        id: 1,
-        type: 'SUCCESS',
-        text: 'Epic success',
-        duration: 2000,
-        data: { age: 14 },
-      }));
+      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          type: 'SUCCESS',
+          text: 'Epic success',
+          duration: 2000,
+          data: { age: 14 }
+        })
+      );
 
       vi.advanceTimersByTime(1999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
       vi.advanceTimersByTime(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
+      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(
+        flashMessage,
+        'duration-elapsed'
+      );
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 2});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 2 });
     });
 
     test('addInfo', () => {
-      const flashMessage = addInfo({ text: 'Epic info', onClick, onRemove, data: { age: 15 } });
+      const flashMessage = addInfo({
+        text: 'Epic info',
+        onClick,
+        onRemove,
+        data: { age: 15 }
+      });
 
       expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-        id: 1,
-        type: 'INFO',
-        text: 'Epic info',
-        duration: 5000,
-        data: { age: 15 },
-      }));
+      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          type: 'INFO',
+          text: 'Epic info',
+          duration: 5000,
+          data: { age: 15 }
+        })
+      );
 
       vi.advanceTimersByTime(4999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
@@ -205,28 +260,38 @@ describe('Flash message actions', () => {
       vi.advanceTimersByTime(1);
 
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
+      expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(
+        flashMessage,
+        'duration-elapsed'
+      );
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 2});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 2 });
     });
 
     test('addApocalypse', () => {
-      const flashMessage = addApocalypse({ text: 'TOTAL ANNIHILATION', onClick, onRemove, data: { age: 16 } });
+      const flashMessage = addApocalypse({
+        text: 'TOTAL ANNIHILATION',
+        onClick,
+        onRemove,
+        data: { age: 16 }
+      });
 
       expect(flashMessageService.addFlashMessage).toHaveBeenCalledTimes(1);
-      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(expect.objectContaining({
-        id: 1,
-        type: 'APOCALYPSE',
-        text: 'TOTAL ANNIHILATION',
-        duration: false,
-        data: { age: 16 },
-      }));
+      expect(flashMessageService.addFlashMessage).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 1,
+          type: 'APOCALYPSE',
+          text: 'TOTAL ANNIHILATION',
+          duration: false,
+          data: { age: 16 }
+        })
+      );
 
       vi.advanceTimersByTime(600000000);
 
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
-      checkCallbacks({flashMessage, expectedRemoveCount: 1});
+      checkCallbacks({ flashMessage, expectedRemoveCount: 1 });
     });
   });
 });

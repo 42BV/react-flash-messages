@@ -18,7 +18,7 @@ describe('Scenario', () => {
 
     return (
       <ul>
-        {flashMessages.map(flashMessage => {
+        {flashMessages.map((flashMessage) => {
           const { id, text, onClick } = flashMessage;
 
           return (
@@ -43,12 +43,16 @@ describe('Scenario', () => {
     };
 
     act(() => {
-      addInfo({ text: 'info', onClick, onRemove: (flashMessage, reason) => {
-        expect(flashMessage.id).toBeDefined();
-        expect(flashMessage.text).toBe('info');
+      addInfo({
+        text: 'info',
+        onClick,
+        onRemove: (flashMessage, reason) => {
+          expect(flashMessage.id).toBeDefined();
+          expect(flashMessage.text).toBe('info');
 
-        expect(reason).toBe('manually-removed')
-      } });
+          expect(reason).toBe('manually-removed');
+        }
+      });
     });
 
     await waitFor(() => {

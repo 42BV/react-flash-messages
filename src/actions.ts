@@ -135,7 +135,7 @@ function addIdAndOnClick<Data>(
 
   // By adding the onClick it is no longer optional, TypeScript
   // does not recognize this so the cast forces it to.
-  const f = (flashMessage as unknown) as FlashMessage<Data>;
+  const f = flashMessage as unknown as FlashMessage<Data>;
 
   // Assign a unique id to the flash message;
   f.id = nextFlashMessageId;

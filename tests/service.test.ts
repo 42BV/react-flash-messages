@@ -12,7 +12,14 @@ describe('AuthenticationService', () => {
   });
 
   test('addFlashMessage should add flash message and inform subscribers', () => {
-    const flashMessage = { id: 1, type: 'info', text: 'Hello', duration: 5000, onClick, onRemove };
+    const flashMessage = {
+      id: 1,
+      type: 'info',
+      text: 'Hello',
+      duration: 5000,
+      onClick,
+      onRemove
+    };
 
     const subscriber = vi.fn();
 
@@ -28,7 +35,14 @@ describe('AuthenticationService', () => {
   });
 
   test('removeFlashMessage should remove the flash message and inform subscribers', () => {
-    const flashMessage = { id: 1, type: 'info', text: 'Hello', duration: 5000, onClick, onRemove };
+    const flashMessage = {
+      id: 1,
+      type: 'info',
+      text: 'Hello',
+      duration: 5000,
+      onClick,
+      onRemove
+    };
 
     const subscriber = vi.fn();
 
@@ -47,8 +61,22 @@ describe('AuthenticationService', () => {
   });
 
   test('clearFlashMessages should clear all the flash messages and inform subscribers', () => {
-    const flashMessageOne = { id: 1, type: 'info', text: 'Hello', duration: 5000, onClick, onRemove };
-    const flashMessageTwo = { id: 2, type: 'warning', text: 'Goodbye', duration: 2000, onClick, onRemove };
+    const flashMessageOne = {
+      id: 1,
+      type: 'info',
+      text: 'Hello',
+      duration: 5000,
+      onClick,
+      onRemove
+    };
+    const flashMessageTwo = {
+      id: 2,
+      type: 'warning',
+      text: 'Goodbye',
+      duration: 2000,
+      onClick,
+      onRemove
+    };
 
     const subscriber = vi.fn();
 

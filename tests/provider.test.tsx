@@ -10,7 +10,7 @@ function Component() {
       {(flashMessages: FlashMessage<unknown>[]) => {
         return (
           <ul>
-            {flashMessages.map(flashMessage => (
+            {flashMessages.map((flashMessage) => (
               <li data-testid="message" key={flashMessage.id}>
                 {flashMessage.text}
               </li>
@@ -31,7 +31,7 @@ describe('FlashMessagesProvider', () => {
     const { getByTestId } = render(
       <FlashMessagesProvider>
         <Component />
-      </FlashMessagesProvider>,
+      </FlashMessagesProvider>
     );
 
     act(() => {

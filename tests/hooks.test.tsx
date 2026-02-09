@@ -10,8 +10,10 @@ describe('useFlashMessages', () => {
 
     return (
       <ul>
-        {flashMessages.map(flashMessage => (
-          <li data-testid="message" key={flashMessage.id}>{flashMessage.text}</li>
+        {flashMessages.map((flashMessage) => (
+          <li data-testid="message" key={flashMessage.id}>
+            {flashMessage.text}
+          </li>
         ))}
       </ul>
     );
@@ -27,7 +29,7 @@ describe('useFlashMessages', () => {
     act(() => {
       addInfo({ text: 'info' });
     });
-    
+
     await waitFor(() => {
       expect(getByTestId('message')).toHaveTextContent('info');
     });

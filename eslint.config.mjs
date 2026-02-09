@@ -1,7 +1,7 @@
 import tseslint from 'typescript-eslint';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import jestPlugin from 'eslint-plugin-jest';
+import vitestPlugin from 'eslint-plugin-vitest';
 
 export default tseslint.config(
   {
@@ -50,14 +50,11 @@ export default tseslint.config(
   {
     files: ['tests/**/*.ts', 'tests/**/*.tsx'],
     plugins: {
-      jest: jestPlugin
-    },
-    languageOptions: {
-      globals: jestPlugin.environments.globals.globals
+      vitest: vitestPlugin
     },
     rules: {
-      ...jestPlugin.configs.recommended.rules,
-      'jest/prefer-expect-assertions': [
+      ...vitestPlugin.configs.recommended.rules,
+      'vitest/prefer-expect-assertions': [
         'error',
         { onlyFunctionsWithAsyncKeyword: true }
       ]

@@ -6,8 +6,6 @@ import {
   act,
   fireEvent
 } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-
 import { useFlashMessages } from '../src/hooks';
 import { addInfo, removeFlashMessage } from '../src/actions';
 import { FlashMessage } from '../src/models';

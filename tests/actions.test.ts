@@ -12,28 +12,28 @@ import { FlashMessage } from '../src/models';
 
 import { flashMessageService } from '../src/service';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('Flash message actions', () => {
-  let onClick: jest.Mock;
-  let onRemove: jest.Mock;
+  let onClick: ReturnType<typeof vi.fn>;
+  let onRemove: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    onClick = jest.fn();
-    onRemove = jest.fn();
+    onClick = vi.fn();
+    onRemove = vi.fn();
 
-    jest.spyOn(flashMessageService, 'addFlashMessage');
-    jest.spyOn(flashMessageService, 'removeFlashMessage');
+    vi.spyOn(flashMessageService, 'addFlashMessage');
+    vi.spyOn(flashMessageService, 'removeFlashMessage');
 
-    jest.clearAllMocks();
-    jest.clearAllTimers();
+    vi.clearAllMocks();
+    vi.clearAllTimers();
 
     resetNextFlashMessageId();
   });
 
   function checkCallbacks({flashMessage, expectedRemoveCount}: { flashMessage: FlashMessage<unknown>, expectedRemoveCount: number}) {
     expect(typeof flashMessage.onClick).toBe('function');
-      
+
     flashMessage.onClick();
 
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -59,7 +59,7 @@ describe('Flash message actions', () => {
       });
 
       expect(flashMessage.id).toBe(1);
-      
+
       checkCallbacks({flashMessage, expectedRemoveCount: 1});
     });
 
@@ -133,10 +133,10 @@ describe('Flash message actions', () => {
         data: { age: 12 },
       }));
 
-      jest.advanceTimersByTime(9999);
+      vi.advanceTimersByTime(9999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
 
@@ -155,10 +155,10 @@ describe('Flash message actions', () => {
         data: { age: 13 },
       }));
 
-      jest.advanceTimersByTime(6999);
+      vi.advanceTimersByTime(6999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
 
@@ -177,10 +177,10 @@ describe('Flash message actions', () => {
         data: { age: 14 },
       }));
 
-      jest.advanceTimersByTime(1999);
+      vi.advanceTimersByTime(1999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
 
@@ -199,10 +199,10 @@ describe('Flash message actions', () => {
         data: { age: 15 },
       }));
 
-      jest.advanceTimersByTime(4999);
+      vi.advanceTimersByTime(4999);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
 
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(1);
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledWith(flashMessage, 'duration-elapsed');
@@ -222,7 +222,7 @@ describe('Flash message actions', () => {
         data: { age: 16 },
       }));
 
-      jest.advanceTimersByTime(600000000);
+      vi.advanceTimersByTime(600000000);
 
       expect(flashMessageService.removeFlashMessage).toHaveBeenCalledTimes(0);
 

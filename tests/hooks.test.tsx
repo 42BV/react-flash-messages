@@ -1,7 +1,5 @@
 import React from 'react';
 import { render, cleanup, waitFor, act } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-
 import { useFlashMessages } from '../src/hooks';
 import { addInfo } from '../src/actions';
 import { flashMessageService } from '../src/service';
@@ -22,7 +20,7 @@ describe('useFlashMessages', () => {
   test('that flashMessages are provided', async () => {
     expect.assertions(2);
 
-    jest.spyOn(flashMessageService, 'unsubscribe');
+    vi.spyOn(flashMessageService, 'unsubscribe');
 
     const { getByTestId } = render(<Component />);
 

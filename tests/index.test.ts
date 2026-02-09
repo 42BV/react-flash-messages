@@ -4,6 +4,10 @@ describe('index', () => {
   test('exports', () => {
     expect(index).toMatchInlineSnapshot(`
       {
+        "FlashMessage": undefined,
+        "FlashMessageConfig": undefined,
+        "FlashMessageCreatorConfig": undefined,
+        "FlashMessageRemovedReason": undefined,
         "FlashMessagesContext": {
           "$$typeof": Symbol(react.context),
           "Consumer": {
@@ -23,6 +27,8 @@ describe('index', () => {
           "_threadCount": 0,
         },
         "FlashMessagesProvider": [Function],
+        "OnFlashMessageClicked": undefined,
+        "OnFlashMessageRemoved": undefined,
         "addApocalypse": [Function],
         "addError": [Function],
         "addFlashMessage": [Function],

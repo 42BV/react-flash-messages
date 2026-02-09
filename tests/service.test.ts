@@ -2,19 +2,19 @@ import { makeFlashMessageService, FlashMessageService } from '../src/service';
 
 describe('AuthenticationService', () => {
   let flashMessageService: FlashMessageService;
-  let onClick: jest.Mock;
-  let onRemove: jest.Mock;
+  let onClick: ReturnType<typeof vi.fn>;
+  let onRemove: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    onClick = jest.fn();
-    onRemove = jest.fn();
+    onClick = vi.fn();
+    onRemove = vi.fn();
     flashMessageService = makeFlashMessageService();
   });
 
   test('addFlashMessage should add flash message and inform subscribers', () => {
     const flashMessage = { id: 1, type: 'info', text: 'Hello', duration: 5000, onClick, onRemove };
 
-    const subscriber = jest.fn();
+    const subscriber = vi.fn();
 
     flashMessageService.subscribe(subscriber);
     expect(subscriber).toHaveBeenCalledTimes(1);
@@ -30,7 +30,7 @@ describe('AuthenticationService', () => {
   test('removeFlashMessage should remove the flash message and inform subscribers', () => {
     const flashMessage = { id: 1, type: 'info', text: 'Hello', duration: 5000, onClick, onRemove };
 
-    const subscriber = jest.fn();
+    const subscriber = vi.fn();
 
     flashMessageService.subscribe(subscriber);
     expect(subscriber).toHaveBeenCalledTimes(1);
@@ -50,7 +50,7 @@ describe('AuthenticationService', () => {
     const flashMessageOne = { id: 1, type: 'info', text: 'Hello', duration: 5000, onClick, onRemove };
     const flashMessageTwo = { id: 2, type: 'warning', text: 'Goodbye', duration: 2000, onClick, onRemove };
 
-    const subscriber = jest.fn();
+    const subscriber = vi.fn();
 
     flashMessageService.subscribe(subscriber);
     expect(subscriber).toHaveBeenCalledTimes(1);
@@ -71,7 +71,7 @@ describe('AuthenticationService', () => {
 
   test('subscription lifecycle', () => {
     // Subscribe a subscriber.
-    const subscriber = jest.fn();
+    const subscriber = vi.fn();
     flashMessageService.subscribe(subscriber);
 
     // It should immediately receive the state after subscribing.

@@ -18,13 +18,13 @@ npm test
 # Individual checks
 npm run lint                # ESLint (max-warnings=0)
 npm run test:ts             # TypeScript type checking (tsc --noEmit)
-npm run test:coverage       # Jest with coverage (100% threshold enforced)
+npm run test:coverage       # Vitest with coverage (100% threshold enforced)
 
 # Run a single test file
-npx jest tests/actions.test.ts
+npx vitest run tests/actions.test.ts
 
 # Run tests matching a pattern
-npx jest --testPathPattern="hooks"
+npx vitest run tests/hooks
 
 # Build (clean + compile to /lib)
 npm run tsc
